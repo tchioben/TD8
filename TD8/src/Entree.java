@@ -14,12 +14,12 @@ public class Entree {
 
 	private String prenom;
 	
-	private ArrayList<Integer> lesNuméros;
+	private ArrayList<Integer> lesNumeros;
 
 	public Entree(String nom, String prenom){
 		this.nom = nom;
 		this.prenom= prenom;
-		this.lesNuméros= new ArrayList<Integer>();
+		this.lesNumeros= new ArrayList<Integer>();
 	}
 	
 	public String getNom() {
@@ -47,15 +47,15 @@ public class Entree {
 	/**
 	 * @return the lesNuméros
 	 */
-	public ArrayList<Integer> getLesNuméros() {
-		return lesNuméros;
+	public ArrayList<Integer> getLesNumeros() {
+		return lesNumeros;
 	}
 
 	/**
 	 * @param lesNuméros the lesNuméros to set
 	 */
-	public void setLesNuméros(ArrayList<Integer> lesNuméros) {
-		this.lesNuméros = lesNuméros;
+	public void setLesNumeros(ArrayList<Integer> lesNumeros) {
+		this.lesNumeros = lesNumeros;
 	}
 	
 	public boolean equals(Object o){
