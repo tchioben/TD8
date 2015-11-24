@@ -50,7 +50,7 @@ public class ExempleUI {
         JButton no = new JButton("Annuler");
         JLabel resultat = new JLabel("Resultat: ");
         
-        Document modeleTextField = new PlainDocument(); // Modele du JTextField
+        Document modeleTextField = new PlainDocument(); //  Modele du JTextField
         JTextField textfield = new JTextField(modeleTextField, "", 8); //Creer un JTextField avec le modele
         
         JList<MaDonnee> l = new JList<MaDonnee>();
