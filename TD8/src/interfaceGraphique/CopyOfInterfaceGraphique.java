@@ -4,11 +4,16 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -17,6 +22,17 @@ import javax.swing.event.ListSelectionListener;
 
 public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, ListSelectionListener {
 
+	private JScrollPane p2;
+	private JPanel p3 = new JPanel();
+
+	private JPanel p4 = new JPanel();
+	private DefaultListModel lm = new DefaultListModel();
+	private JList l1 = new JList(lm);
+	private JScrollPane p = new JScrollPane(l1);
+	
+	
+	
+	
 	
 	
 	
@@ -24,9 +40,35 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 		
 		setLayout(new GridLayout(2,2));
 		
+		
+		
+
 // PANNEAU 1		
 		
-		JPanel p = new JPanel(); //le premier cadre
+		 //= new JPanel(); //le premier cadre
+		
+		lm.addElement("benoit");
+		lm.addElement("maryse");
+
+		
+		
+		
+		//p.add(test);
+		l1.addListSelectionListener(this);
+				
+				//new ListSelectionListener() {
+
+			
+		 //     public void valueChanged(ListSelectionEvent evt) {
+		   //       if (evt.getValueIsAdjusting())
+		     //       return;
+		       //   System.out.println("Selected from " + evt.getFirstIndex() + " to " + evt.getLastIndex());
+		          
+		         // lm.addElement("tartine");
+		        //}
+			
+		      //});
+		//ListSelectionEvent actionList = new ListSelectionEvent() 
 		
 
 		
@@ -38,9 +80,15 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 		
 // PANNEAU 2		
 		
-		JPanel p2 = new JPanel();
 		
+		//= new JPanel(); //le premier cadre
 		
+		JScrollPane test2 ;
+		Object[] data2 =  {"benoit","maryse"};
+		JList ok2;
+		ok2 = new JList(data2);
+
+		p2 = new JScrollPane(ok2);
 		
 		
 		
@@ -49,7 +97,7 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 		
 	// PANNEAU 3	
 		
-		JPanel p3 = new JPanel();
+	
 		
 		//SpringLayout layoutp3 = new SpringLayout();
 		
@@ -99,7 +147,6 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 		
 	// PANNEAU 4	
 		
-		JPanel p4 = new JPanel();
 		BorderLayout layoutp4 = new BorderLayout();
 		
 		p4.setLayout(layoutp4);
@@ -156,11 +203,23 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 		add(p2);
 		add(p3);
 		add(p4);
+		
 	}
 	
 	
 	
-	public void valueChanged(ListSelectionEvent arg0) {
+	public void valueChanged(ListSelectionEvent e) {
+		if (e.getSource()== l1 ){
+			if (e.getValueIsAdjusting()){
+				return ;
+			}
+			lm.addElement("mar");
+		}
+		else { if ( e.getSource()==p32){
+			
+		}
+		}
+		
 		// TODO Auto-generated method stub
 		
 	}
