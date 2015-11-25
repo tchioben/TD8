@@ -22,14 +22,57 @@ import javax.swing.event.ListSelectionListener;
 
 public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, ListSelectionListener {
 
-	private JScrollPane p2;
-	private JPanel p3 = new JPanel();
-
-	private JPanel p4 = new JPanel();
+	// PANNEAU 1
 	private DefaultListModel lm = new DefaultListModel();
 	private JList l1 = new JList(lm);
 	private JScrollPane p = new JScrollPane(l1);
 	
+	
+	
+	
+	// PANNEAU 2
+	
+	private DefaultListModel lm2 = new DefaultListModel();
+	private JList l2 = new JList(lm2);
+	private JScrollPane p2 = new JScrollPane(l2);
+	
+	
+	
+	// PANNEAU 3
+	private JPanel p3 = new JPanel();
+
+	private JPanel p31= new JPanel();
+	private JPanel p311 = new JPanel();
+	private JPanel p321 = new JPanel();
+	private JPanel p32= new JPanel();
+	
+	private JLabel labelNom= new JLabel("Nom :");
+	private JTextField textFieldNom = new JTextField();
+	
+	private JLabel labelPrenom = new JLabel("Prénom :");
+	private JTextField textFieldPrenom = new JTextField();
+	
+	private JButton button1 = new JButton("Ajouter");
+	private JButton button2 = new JButton("Supprimer");
+	private JButton button3 = new JButton("Clear");
+	
+	// PANNEAU 4
+	private JPanel p4 = new JPanel();
+	
+	private JPanel p41= new JPanel();
+	private JPanel p411 = new JPanel();
+	private JPanel p421 = new JPanel();
+	private JPanel p42= new JPanel();
+	
+	private JLabel labelCode= new JLabel("Code :");
+	private JTextField textFieldCode = new JTextField();
+	
+	private JLabel labelValeur = new JLabel("Valeur :");
+	private JTextField textFieldValeur = new JTextField();
+	
+	private JButton button4 = new JButton("Ajouter");
+	private JButton button5 = new JButton("Supprimer");
+	private JButton button6 = new JButton("Clear");
 	
 	
 	
@@ -42,62 +85,29 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 		
 		
 		
-
 // PANNEAU 1		
 		
-		 //= new JPanel(); //le premier cadre
+		
+		// Recuperer la liste et l'afficher
 		
 		lm.addElement("benoit");
 		lm.addElement("maryse");
-
-		
-		
-		
+	
 		//p.add(test);
-		l1.addListSelectionListener(this);
-				
-				//new ListSelectionListener() {
-
-			
-		 //     public void valueChanged(ListSelectionEvent evt) {
-		   //       if (evt.getValueIsAdjusting())
-		     //       return;
-		       //   System.out.println("Selected from " + evt.getFirstIndex() + " to " + evt.getLastIndex());
-		          
-		         // lm.addElement("tartine");
-		        //}
-			
-		      //});
-		//ListSelectionEvent actionList = new ListSelectionEvent() 
-		
-
-		
-		
-		
-		
-		
-		
+		l1.addListSelectionListener(this);   // liste ecran de gauche
+					
+	
 		
 // PANNEAU 2		
-		
-		
-		//= new JPanel(); //le premier cadre
-		
-		JScrollPane test2 ;
-		Object[] data2 =  {"benoit","maryse"};
-		JList ok2;
-		ok2 = new JList(data2);
 
-		p2 = new JScrollPane(ok2);
+		// Recuperer la liste et l'afficher
 		
 		
 		
+		l2.addListSelectionListener(this);   // liste ecran droite
 		
 		
-		
-	// PANNEAU 3	
-		
-	
+// PANNEAU 3	
 		
 		//SpringLayout layoutp3 = new SpringLayout();
 		
@@ -106,98 +116,74 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 		BorderLayout layoutp3 = new BorderLayout();
 		
 		p3.setLayout(layoutp3);
-		
-		
-		JPanel p31= new JPanel();
-		
+			
 		p31.setLayout(new GridLayout(2,1));
-		
-		
-		JPanel p311 = new JPanel();
+			
 		p311.setLayout(new GridLayout(1,2));
-		p311.add(new JLabel("Nom :"));
-		p311.add(new JTextField());	
+	
+		p311.add(labelNom);
+		p311.add(textFieldNom);	
 		
-		
-		JPanel p321 = new JPanel();
 		p321.setLayout(new GridLayout(1,2));
-		p321.add(new JLabel("Prénom :"));
-		p321.add(new JTextField());
 		
+		p321.add(labelPrenom);
+		p321.add(textFieldPrenom);
 		
 		p31.add(p311);
 		p31.add(p321);
-		//layoutp3.putConstraint(SpringLayout.WEST, p31, 5, SpringLayout.WEST, p3);
 		
-		
-		JPanel p32= new JPanel();
-		p32.add(new JButton("Ajouter"));
-		p32.add(new JButton("Supprimer"));
-		p32.add(new JButton("Clear"));
-		
-		
-		
+		p32.add(button1);
+		p32.add(button2);
+		p32.add(button3);
+			
 		p3.add(p31,BorderLayout.NORTH);
 		p3.add(p32,BorderLayout.SOUTH);
+			
+		button1.addActionListener(this);
+		button2.addActionListener(this);
+		button3.addActionListener(this);
 		
 		
-		
-		
-		
-		
-	// PANNEAU 4	
+// PANNEAU 4	
 		
 		BorderLayout layoutp4 = new BorderLayout();
 		
 		p4.setLayout(layoutp4);
 		
-		
-		JPanel p41= new JPanel();
-		
 		p41.setLayout(new GridLayout(2,1));
-		
-		
-		JPanel p411 = new JPanel();
+
 		p411.setLayout(new GridLayout(1,2));
-		p411.add(new JLabel("Code :"));
-		p411.add(new JTextField());	
+		p411.add(labelCode);
+		p411.add(textFieldCode);	
 		
-		
-		JPanel p421 = new JPanel();
 		p421.setLayout(new GridLayout(1,2));
-		p421.add(new JLabel("Valeur :"));
-		p421.add(new JTextField());
-		
-		
+		p421.add(labelValeur);
+		p421.add(textFieldValeur);
+				
 		p41.add(p411);
-		p41.add(p421);
-		//layoutp3.putConstraint(SpringLayout.WEST, p31, 5, SpringLayout.WEST, p3);
+		p41.add(p421);		
 		
-		
-		JPanel p42= new JPanel();
-		p42.add(new JButton("Ajouter"));
-		p42.add(new JButton("Supprimer"));
-		p42.add(new JButton("Clear"));
-		
-		
+		p42.add(button4);
+		p42.add(button5);
+		p42.add(button6);
 		
 		p4.add(p41,BorderLayout.NORTH);
 		p4.add(p42,BorderLayout.SOUTH);
 		
+		button4.addActionListener(this);
+		button5.addActionListener(this);
+		button6.addActionListener(this);
 		
 		
+// FIN PANNEAU 4		
 		
-		
-		
+			
 		p.setBackground(Color.BLUE);
 		p2.setBackground(Color.RED);
 		p3.setBackground(Color.GREEN);
 		p4.setBackground(Color.YELLOW);
 		
-		
-		
-		
-		
+				
 		
 		add(p);  //ajoute du premier cadre dans al fenetre
 		add(p2);
@@ -213,19 +199,55 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 			if (e.getValueIsAdjusting()){
 				return ;
 			}
-			lm.addElement("mar");
-		}
-		else { if ( e.getSource()==p32){
 			
 		}
+		 if ( e.getSource()==p32){
+			if (e.getValueIsAdjusting()){
+				return ;
+			}
+			
 		}
+		
 		
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent act) {
 		// TODO Auto-generated method stub
+		
+		// AJOUTER BAS GAUCHE
+		if (act.getSource() == button1){
+			String nom = textFieldNom.getText();
+			String prenom = textFieldPrenom.getText();
+			// ajouter l'entree
+		}
+		if (act.getSource() == button2){
+			String nom = textFieldNom.getText();
+			String prenom = textFieldPrenom.getText();
+			// supprimer l'entree
+		}
+		if (act.getSource() == button3){
+			textFieldNom.setText("");
+			textFieldPrenom.setText("");
+			// ajouter l'entree
+		}
+		if (act.getSource() == button4){
+			String nom = textFieldCode.getText();
+			String prenom = textFieldValeur.getText();
+			// ajouter le numero
+		}
+		if (act.getSource() == button5){
+			String nom = textFieldCode.getText();
+			String prenom = textFieldValeur.getText();
+			// supprimer le numero
+		}
+		if (act.getSource() == button6){
+			textFieldCode.setText("");
+			textFieldValeur.setText("");
+			// ajouter l'entree
+		}
+		
 		
 	}
 
