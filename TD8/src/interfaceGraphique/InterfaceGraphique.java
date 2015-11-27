@@ -37,7 +37,7 @@ public class InterfaceGraphique extends JPanel implements ActionListener, ListSe
 		premierCadre.add(nom);
 		//
 		
-		JLabel prenomS = new JLabel("Prénom :"); // ajout du mot nom
+		JLabel prenomS = new JLabel("Prenom :"); // ajout du mot nom
 		premierCadre.add(prenomS,SpringLayout.SOUTH);
 
 		JTextField prenom = new JTextField(5); // ajout case de remplissage nom

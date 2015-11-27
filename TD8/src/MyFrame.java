@@ -1,7 +1,9 @@
 /**
  * 
  */
-package interfaceGraphique;
+
+
+import interfaceGraphique.InterfaceGraphique;
 
 import javax.swing.JFrame;
 

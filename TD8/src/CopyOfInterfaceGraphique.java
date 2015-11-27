@@ -1,4 +1,4 @@
-package interfaceGraphique;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -20,10 +20,13 @@ import javax.swing.event.ListSelectionListener;
 
 
 
+@SuppressWarnings("serial")
 public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, ListSelectionListener {
 
 	// PANNEAU 1
-	private DefaultListModel lm = new DefaultListModel();
+	@SuppressWarnings("rawtypes")
+	private static DefaultListModel lm = new DefaultListModel();
+	@SuppressWarnings("rawtypes")
 	private JList l1 = new JList(lm);
 	private JScrollPane p = new JScrollPane(l1);
 	
@@ -32,7 +35,9 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 	
 	// PANNEAU 2
 	
+	@SuppressWarnings("rawtypes")
 	private DefaultListModel lm2 = new DefaultListModel();
+	@SuppressWarnings("rawtypes")
 	private JList l2 = new JList(lm2);
 	private JScrollPane p2 = new JScrollPane(l2);
 	
@@ -49,7 +54,7 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 	private JLabel labelNom= new JLabel("Nom :");
 	private JTextField textFieldNom = new JTextField();
 	
-	private JLabel labelPrenom = new JLabel("Prénom :");
+	private JLabel labelPrenom = new JLabel("Prenom :");
 	private JTextField textFieldPrenom = new JTextField();
 	
 	private JButton button1 = new JButton("Ajouter");
@@ -79,6 +84,7 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 	
 	
 	
+	@SuppressWarnings("unchecked")
 	public CopyOfInterfaceGraphique(){
 		
 		setLayout(new GridLayout(2,2));
@@ -220,16 +226,19 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 		if (act.getSource() == button1){
 			String nom = textFieldNom.getText();
 			String prenom = textFieldPrenom.getText();
-			// ajouter l'entree
+			AjouteEntree.addEntree(nom,prenom);
+			lm.addElement(nom+" "+prenom);
+			clear();
+			
 		}
 		if (act.getSource() == button2){
 			String nom = textFieldNom.getText();
 			String prenom = textFieldPrenom.getText();
 			// supprimer l'entree
+			clear();
 		}
 		if (act.getSource() == button3){
-			textFieldNom.setText("");
-			textFieldPrenom.setText("");
+			clear();
 			// ajouter l'entree
 		}
 		if (act.getSource() == button4){
@@ -252,9 +261,17 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
 	}
 
 	
-    public static class MyFrame extends JFrame {
+    private void clear() {
+		// TODO Auto-generated method stub
+		textFieldNom.setText("");
+		textFieldPrenom.setText("");
+	}
 
-        public MyFrame() {
+
+	public static class MyFrame extends JFrame {
+
+        @SuppressWarnings("unused")
+		public MyFrame() {
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
             setSize(640,400);
             GridLayout grid= new GridLayout(2, 2);
@@ -270,6 +287,7 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener, 
         MyFrame frame = new MyFrame();
         frame.setBackground(Color.BLUE);
         frame.setVisible(true);
+        lm = Initialisation.initialisationPersonne();
     }
 	
 	
