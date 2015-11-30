@@ -1,4 +1,7 @@
+package metier;
 
+import fabrique.FabriqueEntree;
+import fabrique.FabriqueNumero;
 
 /**
  * 
@@ -10,7 +13,8 @@
  */
 public class AssoEntreeNumero {
 
-	public static void assoEntreeNumero(String nom, String prenom, String code, String valeur){
+	public static void assoEntreeNumero(String nom, String prenom, String code,
+			String valeur) {
 		FabriqueEntree fe = FabriqueEntree.getInstance();
 		FabriqueNumero fn = FabriqueNumero.getInstance();
 		fe.addEntreeBDDetObjet(nom, prenom);

@@ -1,3 +1,5 @@
+package domaine;
+
 /**
  * 
  */
@@ -9,17 +11,17 @@
 public class Numero {
 
 	private int id;
-	
+
 	private String code;
-	
+
 	private String valeur;
 
-	public Numero(int id,String code,String valeur){
+	public Numero(int id, String code, String valeur) {
 		this.setId(id);
-		this.code=code;
-		this.valeur=valeur;
+		this.code = code;
+		this.valeur = valeur;
 	}
-	
+
 	/**
 	 * @return the code
 	 */
@@ -28,7 +30,8 @@ public class Numero {
 	}
 
 	/**
-	 * @param code the code to set
+	 * @param code
+	 *            the code to set
 	 */
 	public void setCode(String code) {
 		this.code = code;
@@ -42,7 +45,8 @@ public class Numero {
 	}
 
 	/**
-	 * @param valeur the valeur to set
+	 * @param valeur
+	 *            the valeur to set
 	 */
 	public void setValeur(String valeur) {
 		this.valeur = valeur;
@@ -56,12 +60,17 @@ public class Numero {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
-	
+
+	/**
+	 * 
+	 */
+	public String toString(){
+		return this.code+" : "+this.valeur;
+	}
 }

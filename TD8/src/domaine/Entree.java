@@ -1,3 +1,5 @@
+package domaine;
+
 import java.util.ArrayList;
 
 /**
@@ -9,19 +11,19 @@ import java.util.ArrayList;
  *
  */
 public class Entree {
-	
+
 	private String nom;
 
 	private String prenom;
-	
+
 	private ArrayList<Integer> lesNumeros;
 
-	public Entree(String nom, String prenom){
+	public Entree(String nom, String prenom) {
 		this.nom = nom;
-		this.prenom= prenom;
-		this.lesNumeros= new ArrayList<Integer>();
+		this.prenom = prenom;
+		this.lesNumeros = new ArrayList<Integer>();
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -38,7 +40,8 @@ public class Entree {
 	}
 
 	/**
-	 * @param prenom the prenom to set
+	 * @param prenom
+	 *            the prenom to set
 	 */
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
@@ -52,25 +55,27 @@ public class Entree {
 	}
 
 	/**
-	 * @param lesNum√©ros the lesNum√©ros to set
+	 * @param lesNum√
+	 *            ©ros the lesNum√©ros to set
 	 */
 	public void setLesNumeros(ArrayList<Integer> lesNumeros) {
 		this.lesNumeros = lesNumeros;
 	}
-	
-	public boolean equals(Object o){
+
+	@Override
+	public boolean equals(Object o) {
 		return (this.nom.equals(((Entree) o).getNom()) && this.prenom.equals(((Entree) o).getPrenom()));
 	}
-	
-	public String toString(){
-		return this.nom+" "+this.prenom;
+
+	@Override
+	public String toString() {
+		return this.nom + " " + this.prenom;
 	}
-	
-	public int hashCode(){
-		return this.nom.hashCode()+this.prenom.hashCode();
+
+	@Override
+	public int hashCode() {
+		return this.nom.hashCode() + this.prenom.hashCode();
 	}
 
 
-	
-	
 }
