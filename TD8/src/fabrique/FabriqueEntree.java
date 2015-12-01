@@ -41,15 +41,13 @@ public class FabriqueEntree {
 	 * @return 
 	 */
 	public Entree addEntreeBDDetObjet(String nom, String prenom) {
-		System.out.println(nom + prenom);
 		Entree entree = new Entree(nom, prenom);
-		System.out.println("ok ca marche");
 		if (!entreeExiste(entree)) {
 			sequence++;
 			BDDConnection.addPersonne(getSequenceString(), nom, prenom);
 			this.lesEntrees.put(entree.hashCode(), entree);
 		} 
-		else { entree = this.lesEntrees.get(nom.hashCode()+prenom.hashCode()); }
+		else { entree = this.lesEntrees.get((nom.hashCode()+prenom.hashCode())*7); }
 		return entree;
 	}
 
@@ -62,7 +60,6 @@ public class FabriqueEntree {
 	 */
 	public Entree addEntreeObjet(String nom, String prenom) {
 		Entree entree = new Entree(nom, prenom);
-		System.out.println("voila = "+nom+"pre"+prenom+"fin");
 		if (!entreeExiste(entree)){
 			this.lesEntrees.put(entree.hashCode(), entree);
 		}

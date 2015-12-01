@@ -1,6 +1,6 @@
 package fabrique;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import domaine.Numero;
 
@@ -16,23 +16,23 @@ public class FabriqueNumero {
 
 	private static FabriqueNumero INSTANCE = null;
 
-	private ArrayList<Numero> listeNums;
+	private HashMap<Integer,Numero> listeNums;
 
 	private int compteur;
 
 	private FabriqueNumero() {
-		this.listeNums = new ArrayList<Numero>();
+		this.listeNums = new HashMap<Integer,Numero>();
 		this.compteur = 1;
 	}
 
 	public Numero addNumero(String code, String valeur) {
 		Numero num = new Numero(compteur++, code, valeur);
-		this.listeNums.add(num);
+		this.listeNums.put(num.hashCode(),num);
 		return num;
 	}
 
-	public Numero getNumero(int id) {
-		return this.listeNums.get(id);
+	public Numero getNumero(String code,String valeur) {
+		return this.listeNums.get((code.hashCode()+valeur.hashCode())*13);
 	}
 
 	public static FabriqueNumero getInstance() {
@@ -45,7 +45,7 @@ public class FabriqueNumero {
 	/**
 	 * @return the lsiteNums
 	 */
-	public ArrayList<Numero> getLsiteNums() {
+	public HashMap<Integer,Numero> getListeNums() {
 		return listeNums;
 	}
 
@@ -55,8 +55,8 @@ public class FabriqueNumero {
 	 * @param lsiteNums
 	 *            the lsiteNums to set
 	 */
-	public void setLsiteNums(ArrayList<Numero> lsiteNums) {
-		this.listeNums = lsiteNums;
+	public void setListeNums(HashMap<Integer,Numero> listeNums) {
+		this.listeNums = listeNums;
 	}
 
 	/**

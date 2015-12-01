@@ -74,7 +74,7 @@ public class Entree {
 
 	@Override
 	public int hashCode() {
-		return this.nom.hashCode() + this.prenom.hashCode();
+		return (this.nom.hashCode() + this.prenom.hashCode())*7;
 	}
 
 

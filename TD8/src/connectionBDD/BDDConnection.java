@@ -53,9 +53,6 @@ public class BDDConnection {
 			ResultSet rs = ps.executeQuery();
 			// int n = ps.executeUpdate();
 			System.out.println("J'ai executé la query");
-			while (rs.next()) {
-				System.out.println(rs.getString(3)+rs.getString(2));
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -102,7 +99,6 @@ public class BDDConnection {
 		try {
 			BDDConnection.getInstance();
 			deleteNumeros(n);
-			System.out.println("delete from personne where nom="+nom+" and prenom ="+prenom);
 			PreparedStatement stmt = c.prepareStatement("delete from personne where nom=? and prenom =?");
 			stmt.clearParameters();
 			stmt.setString(1, nom);
@@ -222,15 +218,22 @@ public class BDDConnection {
 			return numero.getInt(1);
 		}
 		catch (Exception e){
-			System.out.println("marche pas");
 		}
 		return 0;
 	}
 
-	
-	public static void main(String[] args) {
-		System.out.println("Connection réussie");
-		BDDConnection.requete();
-		System.out.println(getNumeroPersonne("bailleul", "benoit"));
+		public static void deleteUnNumero(int n,String code, String valeur) {
+			try {
+				BDDConnection.getInstance();
+				PreparedStatement stmt = c.prepareStatement("delete from numero where id_personne=? and code=? and valeur=?");
+				stmt.clearParameters();
+				stmt.setInt(1, n);
+				stmt.setString(2, code);
+				stmt.setString(3, valeur);
+				stmt.execute();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 	}
+		
 }

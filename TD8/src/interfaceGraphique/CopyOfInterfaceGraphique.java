@@ -20,8 +20,10 @@ import javax.swing.event.ListSelectionListener;
 
 
 
+
 import connectionBDD.BDDConnection;
 import metier.GererEntree;
+import metier.GererNumero;
 import metier.InitialisationAppli;
 import domaine.Entree;
 import domaine.Numero;
@@ -66,8 +68,6 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener,
 	private JButton button2 = new JButton("Supprimer");
 	private JButton button3 = new JButton("Clear");
 	
-	private boolean nomEtPrenomPeutEtreSupprimer = true; // permet d'empecher l'écouteur d'essayer de changer la valeur el temps de l'utiliser
-	private boolean codeEtValeurPeutEtreSupprimer = true; // permet d'empecher l'écouteur d'essayer de changer la valeur el temps de l'utiliser
 
 	// PANNEAU 4
 	private JPanel p4 = new JPanel();
@@ -200,27 +200,25 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener,
 
 	public void valueChanged(ListSelectionEvent e) {
 		 // Panneau entree
-		if (e.getSource()== l1 && nomEtPrenomPeutEtreSupprimer){
-			 if (e.getValueIsAdjusting()){
-			 return ;
-			 }
-			 nomEtPrenomPeutEtreSupprimer=false;
+		if (e.getSource()== l1 && l1.getSelectedValue()!=null){
+			 if (!e.getValueIsAdjusting()){
 			 Entree entree = (Entree) l1.getSelectedValue();
 			 
 			 InitialisationAppli.initialisationNumero(lm2,entree.getNom(),entree.getPrenom());
 			 textFieldNom.setText(entree.getNom());
-			 textFieldPrenom.setText(entree.getPrenom());		 
+			 textFieldPrenom.setText(entree.getPrenom());	
+			 }
 		 }
 		 
 		 //Panneau valeur+ code
-		 if (e.getSource()== l2 ){
-			 if (e.getValueIsAdjusting()){
-			 return ;
+		 if (e.getSource()== l2 && l2.getSelectedValue()!=null){
+			 if (!e.getValueIsAdjusting()){
+			
+			 Numero entree = (Numero) l2.getSelectedValue();
+			 String mot = entree.getCode();
+			 textFieldCode.setText(mot);
+			 textFieldValeur.setText(entree.getValeur());	
 			 }
-			 Entree entree = (Entree) l1.getSelectedValue();
-			 String mot = entree.getNom();
-			 textFieldNom.setText(mot);
-			 textFieldPrenom.setText(entree.getPrenom());		 
 		 }
 	}
 
@@ -228,7 +226,7 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener,
 		// TODO Auto-generated method stub
 
 		// AJOUTER BAS GAUCHE
-		if (act.getSource() == button1) {
+		if (act.getSource() == button1 && !textFieldNom.getText().equals(new String("")) && !textFieldPrenom.getText().equals(new String(""))) {
 			String nom = textFieldNom.getText();
 			String prenom = textFieldPrenom.getText();
 			Entree entree= GererEntree.addEntree(nom,prenom);
@@ -237,38 +235,49 @@ public class CopyOfInterfaceGraphique extends JPanel implements ActionListener,
 			clearNom();
 
 		}
-		if (act.getSource() == button2) {
+		if (act.getSource() == button2 && !textFieldNom.getText().equals(new String("")) && !textFieldPrenom.getText().equals(new String(""))) {
 			String nom = textFieldNom.getText();
 			String prenom = textFieldPrenom.getText();
 			Entree entree= GererEntree.getEntree(nom,prenom); 
+			lm.clear();
+			l1.clearSelection();
+			l2.clearSelection();
 			lm.removeElement(entree);
+			lm2.removeAllElements();
 			l1.clearSelection();
 			clearNom();
-			nomEtPrenomPeutEtreSupprimer=true;
 			GererEntree.supprimeEntreeDeLaBDD(entree);
 		}
 		
 		if (act.getSource() == button3) {
 			clearNom();
 		}
-		if (act.getSource() == button4) {
+		if (act.getSource() == button4 && !textFieldNom.getText().equals(new String("")) && !textFieldPrenom.getText().equals(new String(""))) {
 			String nom = textFieldNom.getText();
 			String prenom = textFieldPrenom.getText();
 			String code = textFieldCode.getText();
 			String valeur = textFieldValeur.getText();
-			if (nom !="" || prenom != "") {
-				InitialisationAppli.ajouterNumero(nom, prenom,code,valeur);
-				Numero num =new Numero(BDDConnection.getNumeroPersonne(nom, prenom),code,valeur);
-				lm2.addElement(num);
-				System.out.println(num.toString()+"bis");
-			}
+			InitialisationAppli.ajouterNumero(nom, prenom,code,valeur);
+			Numero num = GererNumero.addNumero(nom, prenom,code,valeur);
+			lm2.addElement(num);
 			clearCode();
 		}
-		if (act.getSource() == button5) {
-			String nom = textFieldCode.getText();
-			String prenom = textFieldValeur.getText();
+		if (act.getSource() == button5 && !textFieldNom.getText().equals(new String("")) && !textFieldPrenom.getText().equals(new String(""))) {
+			String code = textFieldCode.getText();
+			String valeur = textFieldValeur.getText();	
+			String nom = textFieldNom.getText();
+			String prenom = textFieldPrenom.getText();
+			Entree entree= GererEntree.getEntree(nom,prenom);
+			Numero numero = GererNumero.getNumero(code, valeur);
+			l1.clearSelection();
+			l2.clearSelection();
+			lm2.removeElement(numero);
+			clearNom();
+			GererNumero.supprimeNumeroDeLaBDD(nom, prenom, numero);
+			clearCode();	
 			
-			clearCode();
+			
+			
 		}
 		if (act.getSource() == button6) {
 			clearCode();
